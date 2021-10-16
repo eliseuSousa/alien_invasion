@@ -1,0 +1,9 @@
+class Settings():
+    def __init__(self):
+        """Uma classe para armazenar as configurações da Invação Alienígena"""
+        self.screen_width = 800
+        self.screen_height = 600
+        self.bg_color = (40,29,43)
+
+        # Configurações da espaçonave
+        self.ship_speed_factor = 1.5
