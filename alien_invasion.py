@@ -14,9 +14,13 @@ def run_game():
     ai_settings = Settings()
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption('Alien invasion')
+    # Cria uma espaçoanave, um grupo de projéteis e um grupo de alienígenas
     ship = Ship(ai_settings,screen)
-    # Cria um grupo para armazenar os projéteis
     bullets = Group()
+    aliens = Group()
+
+    # Cria uma frota de alienígnas
+    gf.create_fleet(ai_settings, screen, aliens)
 
     # Inicializa o laço principal do jogo
     while True:
@@ -25,6 +29,6 @@ def run_game():
         ship.update()
         bullets.update()
         gf.update_bullets(bullets)
-        gf.update_screen(ai_settings, screen, ship, bullets)
+        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 run_game()

@@ -6,7 +6,7 @@ class Ship():
         self.ai_settings = ai_settings
         
         # Carrega a imagem da espaçonave e obtêm ser rect
-        self.image = pygame.image.load('./imagens/ships/ship00.bmp')
+        self.image = pygame.image.load('./img/ships/ship00.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
