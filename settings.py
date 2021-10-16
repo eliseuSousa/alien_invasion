@@ -7,3 +7,7 @@ class Settings():
 
         # Configurações da espaçonave
         self.ship_speed_factor = 1.5
+
+        # Configurções dos projétes 
+        self.bullet_speed_factor = 3
+        self.bullets_allowed = 3
