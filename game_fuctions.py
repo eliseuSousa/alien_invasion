@@ -59,14 +59,14 @@ def fire_bullets(ai_settings, screen, ship, bullets):
 
 def get_number_alien_x(ai_settings, alien_width):
     """Determina o número de alienígenas que cabem em uma linha."""
-    available_space_x = ai_settings.screen_width - alien_width
+    available_space_x = ai_settings.screen_width -  alien_width
     number_aliens_x = int(available_space_x / alien_width)
     return number_aliens_x
 
 def get_number_rows(ai_settings, ship_height, alien_height):
     """Determina o número de linhas com alienígenas na tela."""
-    avaiable_space_x = (ai_settings.screen_height - (3*alien_height) - ship_height)
-    number_rows = int(avaiable_space_x / (2 * alien_height))
+    avaiable_space_y = (ai_settings.screen_height - (alien_height) - ship_height)
+    number_rows = int(avaiable_space_y / (2*alien_height))
     return number_rows
 
 def create_alien(ai_settings, screen, aliens, alien_number, row_number):
@@ -79,11 +79,9 @@ def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     aliens.add(alien)
 
 def create_fleet(ai_settings, screen, ship, aliens):
-    """Cria uma flota completa de alienígenas"""
+    """Cria uma frota completa de alienígenas"""
 
     # Cria um alienígena e calcula o número de alienígenas em uma linha
-    # O espaçamento entre os alienígenas é igual à largura de um alienígena. Obs. Aqui não vamos usar essas medidas porque a
-    # largura do alienígena já é grande o bastante
 
     alien = Alien(ai_settings, screen)
     number_aliens_x = get_number_alien_x(ai_settings, alien.rect.width)

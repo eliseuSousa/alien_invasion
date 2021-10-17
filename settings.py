@@ -6,7 +6,7 @@ class Settings():
         self.screen_width = 800
         self.screen_height = 600
         self.bg_color = (40,29,43)
-        self.icon = pygame.image.load('./img/arcade-game.png')
+        self.icon = pygame.image.load('./img/arcade-game.bmp')
 
         # Configurações da espaçonave
         self.ship_speed_factor = 1.5
@@ -18,6 +18,6 @@ class Settings():
 
         # Configurações dos alienígenas
         self.alien_speed_factor = 1
-        self.fleet_drop_speed = 50
+        self.fleet_drop_speed = 15
         # fleet_direction  igual a 1 representa a direita; -1 representa a esquerda
         self.fleet_direction = 1 
