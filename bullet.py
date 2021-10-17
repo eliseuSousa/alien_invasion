@@ -15,7 +15,7 @@ class Bullet(Sprite):
         # self.rect.top = ship.rect.top
 
         # Carregando a imagem na tela 
-        self.bullet_image = pygame.image.load('./img/ships/bullet_ship.bmp')
+        self.bullet_image = pygame.image.load('./img/ships/bullet_ship00.bmp')
         self.rect = self.bullet_image.get_rect()
         self.screen_rect = self.screen.get_rect()
 
