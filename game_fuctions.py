@@ -67,15 +67,22 @@ def get_number_alien_x(ai_settings, alien_width):
     number_aliens_x = int(available_space_x / alien_width)
     return number_aliens_x
 
-def create_alien(ai_settings, screen, aliens, alien_number):
+def get_number_rows(ai_settings, ship_height, alien_height):
+    """Determina o número de linhas com alienígenas na tela."""
+    avaiable_space_x = (ai_settings.screen_height - (3*alien_height) - ship_height)
+    number_rows = int(avaiable_space_x / (2 * alien_height))
+    return number_rows
+
+def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     # Cria um alienígena e o posiciona na linha
     alien = Alien(ai_settings, screen)
     alien_width = alien.rect.width
     alien.x = alien_width + alien_number * alien_width
     alien.rect.x = alien.x
+    alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
 
-def create_fleet(ai_settings, screen, aliens):
+def create_fleet(ai_settings, screen, ship, aliens):
     """Cria uma flota completa de alienígenas"""
 
     # Cria um alienígena e calcula o número de alienígenas em uma linha
@@ -84,9 +91,11 @@ def create_fleet(ai_settings, screen, aliens):
 
     alien = Alien(ai_settings, screen)
     number_aliens_x = get_number_alien_x(ai_settings, alien.rect.width)
+    row_number = get_number_rows(ai_settings, ship.rect.height, alien.rect.height)
 
-    # Cria a primeira linha de alienígenas
-    for alien_number in range(number_aliens_x):
+    # Cria a frota de alienígenas
+    for row_number in range(row_number):
+        for alien_number in range(number_aliens_x):
         # Cria um alienígena e o posiciona na linha
-        create_alien(ai_settings, screen, aliens, alien_number)
+            create_alien(ai_settings, screen, aliens, alien_number, row_number)
     print(len(aliens))
