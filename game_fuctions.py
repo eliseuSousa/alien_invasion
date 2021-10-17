@@ -2,26 +2,27 @@ import sys
 
 import pygame
 from pygame import rect
+from pygame.constants import K_j, K_l
 
 from bullet import Bullet
 
 from alien import Alien
 
 def check_events_keydown(event, ai_settings, screen, ship, bullets):
-    if event.key == pygame.K_RIGHT:
+    if (event.key == pygame.K_RIGHT) or (event.key == K_l):
         ship.moving_right = True
-    elif event.key == pygame.K_LEFT:
+    elif (event.key == pygame.K_LEFT) or (event.key == pygame.K_j):
         ship.moving_left = True
-    elif event.key == pygame.K_SPACE:
+    elif (event.key == pygame.K_SPACE) or (event.key == pygame.K_k):
         # Criando novos projéteis
         fire_bullets(ai_settings, screen, ship, bullets)
 
 def check_events_keyup(event, ship):
-    if event.key == pygame.K_k:
+    if event.key == pygame.K_q:
         sys.exit()
-    elif event.key == pygame.K_RIGHT:
+    elif (event.key == pygame.K_RIGHT) or (event.key == K_l):
         ship.moving_right = False
-    elif event.key == pygame.K_LEFT:
+    elif (event.key == pygame.K_LEFT) or (event.key == K_j):
         ship.moving_left = False
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -98,4 +99,23 @@ def create_fleet(ai_settings, screen, ship, aliens):
         for alien_number in range(number_aliens_x):
         # Cria um alienígena e o posiciona na linha
             create_alien(ai_settings, screen, aliens, alien_number, row_number)
-    print(len(aliens))
+
+def check_fleet_edges(ai_settings, aliens):
+    """Reponde apropriadamente se algum alienígena alcançou uma borda"""
+    for alien in aliens:
+        if alien.check_edges():
+            change_fleet_direction(ai_settings, aliens)
+            break
+
+def change_fleet_direction(ai_settings, aliens):
+    """Faz a frota descer e mudar a sua direção."""
+    for alien in aliens.sprites():
+        alien.rect.y += ai_settings.fleet_drop_speed
+    ai_settings.fleet_direction *= -1
+
+def update_aliens(ai_settings, aliens):
+    """ Verificar se a frota está em uma das bordas e então 
+        atualizar as posições de todos os alienígenas da frota.
+    """
+    check_fleet_edges(ai_settings, aliens)
+    aliens.update()
