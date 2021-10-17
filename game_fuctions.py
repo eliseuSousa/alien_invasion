@@ -57,10 +57,14 @@ def fire_bullets(ai_settings, screen, ship, bullets):
         new_bullet = Bullet(ai_settings, screen, ship)
         bullets.add(new_bullet)
 
-def update_bullets(bullets):
+def update_bullets(aliens, bullets):
+    """Atualiza a posição dos projéteis e se livra dos priojéteis antigos"""
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+    # Verifica se algum projétil antingiu os aliénigenas
+    # Em caso afirmativo, livra-se do projétil antigo e do alienígena
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
 def get_number_alien_x(ai_settings, alien_width):
     """Determina o número de alienígenas que cabem em uma linha."""
