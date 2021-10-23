@@ -25,7 +25,7 @@ def check_events_keyup(event, ship):
     elif (event.key == pygame.K_LEFT) or (event.key == pygame.K_j):
         ship.moving_left = False
 
-def check_events(ai_settings, screen, stats, play_button, ship, bullets):
+def check_events(ai_settings, screen, stats, play_button, ship, aliens,  bullets):
     """Responde a eventos do teclado e mouse."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -39,12 +39,26 @@ def check_events(ai_settings, screen, stats, play_button, ship, bullets):
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(stats, play_button, mouse_x, mouse_y)
+            check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y)
 
-def check_play_button(stats, play_button, mouse_x, mouse_y):
+def check_play_button(ai_settings, screen, stats, play_button, ship, bullets, aliens, mouse_x, mouse_y):
     """Inicializa um novo jogo quando o jogador clicar Play."""
-    if play_button.rect.collidepoint(mouse_x, mouse_y):
+    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+    if button_clicked and not stats.game_active:
+        # Ocultar o cursor do mouse
+        pygame.mouse.set_visible(False)
+
+        # Reinicia os dados estatísticos do jogo
+        stats.reset_stats()
         stats.game_active = True
+
+        # Esvazia a lista de alienígenas e de projéteis
+        aliens.empty()
+        bullets.empty()
+
+        # Cria uma nova frota e centraliza a espaçoanve
+        create_fleet(ai_settings, screen, ship, aliens)
+        ship.center_ship()
 
 def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
     """Atualiza as imagens na tela e altera para a nova tela"""
@@ -139,6 +153,7 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
     else:
         stats.game_active = False
+        pygame.mouse.set_visible(True)
     
 
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
