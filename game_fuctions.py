@@ -73,9 +73,7 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, bullets
 
 def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button):
     """Atualiza as imagens na tela e altera para a nova tela"""
-    # Redesenha a tela a cada passagem pelo laço
-    screen.fill(ai_settings.bg_color)
-
+    
     # Redesenha todos os projéteis atrás da espaçonave e dos alienígenas
 
     for bullet in bullets.sprites():
