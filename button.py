@@ -20,7 +20,7 @@ class Button():
         self.prep_msg(msg)
 
     def prep_msg(self, msg):
-        """Transforma msg em imagem redenrzada e centraliza o texto no botão."""
+        """Transforma msg em imagem redenrizada e centraliza o texto no botão."""
         self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center

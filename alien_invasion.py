@@ -36,7 +36,7 @@ def run_game():
     big_stars = Group()
     planets = Group()
 
-    # Cria uma espaçoanave, um grupo de projéteis e um grupo de alienígenas
+    # Cria uma espaçonave, um grupo de projéteis e um grupo de alienígenas
     ship = Ship(ai_settings,screen)
     bullets = Group()
     aliens = Group()

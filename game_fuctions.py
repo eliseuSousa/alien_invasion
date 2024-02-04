@@ -99,13 +99,13 @@ def fire_bullets(ai_settings, screen, ship, bullets):
 
 def get_number_alien_x(ai_settings, alien_width):
     """Determina o número de alienígenas que cabem em uma linha."""
-    available_space_x = ai_settings.screen_width -  alien_width
+    available_space_x = ai_settings.screen_width -  1.5*alien_width
     number_aliens_x = int(available_space_x / alien_width)
     return number_aliens_x
 
 def get_number_rows(ai_settings, ship_height, alien_height):
     """Determina o número de linhas com alienígenas na tela."""
-    avaiable_space_y = (ai_settings.screen_height - (alien_height) - ship_height)
+    avaiable_space_y = (ai_settings.screen_height - (4*alien_height) - ship_height)
     number_rows = int(avaiable_space_y / (2*alien_height))
     return number_rows
 
