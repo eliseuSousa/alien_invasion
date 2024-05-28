@@ -1,7 +1,7 @@
 from pygame.display import update
 from star import Star
 from big_star import BigStar
-from planet import Planet
+# from planet import Planet
 import time
 
 def init_background(screen, stars, big_stars, planets):
@@ -17,10 +17,10 @@ def init_background(screen, stars, big_stars, planets):
         new_big_star = BigStar(screen, area_x, area_y)
         big_stars.add(new_big_star)
     
-    for new_planet in range(2):
-        new_planet = Planet(screen, area_x, area_y)
-        planets.add(new_planet)
-        time.sleep(0.5)
+    # for new_planet in range(2):
+    #    new_planet = Planet(screen, area_x, area_y)
+    #    planets.add(new_planet)
+    #    time.sleep(0.5)
     
 
 def update_background(screen, stars, big_stars, planets):
@@ -48,11 +48,11 @@ def update_background(screen, stars, big_stars, planets):
             big_stars.remove(big_star)
             create_big_new_star(screen, big_stars, area_x, area_y)
 
-    for planet in planets.copy():
-        if planet.rect.y > 640:
-            planets.remove(planet)
-            create_new_planet(screen, planets, area_x, area_y)
-            time.sleep(0.3)
+    #for planet in planets.copy():
+    #    if planet.rect.y > 640:
+    #        planets.remove(planet)
+    #        create_new_planet(screen, planets, area_x, area_y)
+    #        time.sleep(0.3)
 
 
 def create_new_star(screen, stars, area_x, area_y):
@@ -63,7 +63,7 @@ def create_big_new_star(screen, big_stars, area_x, area_y):
     new_big_star = BigStar(screen, area_x, area_y)
     big_stars.add(new_big_star)
     
-def create_new_planet(screen, planets, area_x, area_y):
-    new_planet = Planet(screen, area_x, area_y)
-    planets.add(new_planet)
+#def create_new_planet(screen, planets, area_x, area_y):
+#    new_planet = Planet(screen, area_x, area_y)
+#    planets.add(new_planet)
 
